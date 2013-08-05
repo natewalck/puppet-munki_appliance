@@ -15,6 +15,7 @@ class munki_appliance(
   class{'munki_appliance::install': } ->
   class{'munki_appliance::virtualenv': } ->
   class{'munki_appliance::config': } ->
+  class{'munki_appliance::vhosts': } ->
   Class['munki_appliance']
 
 }
