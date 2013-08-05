@@ -7,9 +7,16 @@ class munki_appliance::munki_dirs{
   $munki_dirs  = ["${munki_root}/repo/catalogs", "${munki_root}/repo/manifests",
                   "${munki_root}/repo/pkgs", "${munki_root}/repo/pkgsinfo"]
 
-  file { $munki_dirs:
+  file { "${munki_root}/repo" :
     ensure  => 'directory',
     owner   => $munki_user,
     group   => $munki_group,
+  }
+
+  file { $munki_dirs :
+    ensure  => 'directory',
+    owner   => $munki_user,
+    group   => $munki_group,
+    require => File["${munki_root}/repo"],
   }
 }
