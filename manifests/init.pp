@@ -5,6 +5,8 @@ class munki_appliance(
   $munki_user  = 'munki',
   $munki_group = 'munki',
   $munki_web_admin_user  = 'munkiwebadmin',
+  $munki_web_admin_dir   = '/opt/munkiwebadmin_env',
+  $munki_web_admin_data  = '/etc/munkiwebadmin',
 ) {
 
   class{'munki_appliance::groups': } ->

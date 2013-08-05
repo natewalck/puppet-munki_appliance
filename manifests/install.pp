@@ -1,6 +1,7 @@
 # /etc/puppet/modules/munki_appliance/manifests/install.pp
 
 class munki_appliance::install {
+  $munki_web_admin_data = $munki_appliance::munki_web_admin_data
 
   class { 'apache': default_vhost => false, }
 
@@ -13,10 +14,10 @@ class munki_appliance::install {
     pip        => true,
   }
 
-  file { '/etc/munkiwebadmin': ensure => directory, }
-  file { '/etc/munkiwebadmin/requirements.txt':
+  file { $munki_web_admin_data : ensure => directory, }
+  file { "${$munki_web_admin_data}/requirements.txt" :
     content => 'django==1.5.1',
-    require => File['/etc/munkiwebadmin'],
+    require => File[$munki_web_admin_data],
   }
 
 }
