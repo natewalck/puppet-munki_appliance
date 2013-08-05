@@ -11,7 +11,7 @@ class munki_appliance(
 
   class{'munki_appliance::groups': } ->
   class{'munki_appliance::users': } ->
-  class{'munki_appliance::repos': } ->
+  class{'munki_appliance::software_repos': } ->
   class{'munki_appliance::install': } ->
   class{'munki_appliance::virtualenv': } ->
   class{'munki_appliance::vhosts': } ->
