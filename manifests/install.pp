@@ -12,4 +12,11 @@ class munki_appliance::install {
     virtualenv => true,
     pip        => true,
   }
+
+  file { '/etc/munkiwebadmin': ensure => directory, }
+  file { '/etc/munkiwebadmin/requirements.txt':
+    content => 'django==1.5.1',
+    require => File['/etc/munkiwebadmin'],
+  }
+
 }

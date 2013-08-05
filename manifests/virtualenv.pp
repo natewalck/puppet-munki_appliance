@@ -7,10 +7,11 @@ class munki_appliance::virtualenv {
   file { '/opt': ensure => directory, owner => $munki_web_admin_user, }
 
   python::virtualenv { '/opt/munkiwebadmin_env':
-    ensure  => present,
-    version => 'system',
-    owner   => $munki_web_admin_user,
-    group   => $munki_web_admin_user,
-    require => File['/opt'],
+    ensure       => present,
+    version      => 'system',
+    requirements => '/etc/munkiwebadmin/requirements.txt',
+    owner        => $munki_web_admin_user,
+    group        => $munki_web_admin_user,
+    require      => File['/opt'],
   }
 }

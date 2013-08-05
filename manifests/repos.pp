@@ -2,7 +2,7 @@
 
 class munki_appliance::repos {
 
-  if $operatingsystem =~ /^(CentOS|RedHat)$/ {
+  if $::operatingsystem =~ /^(CentOS|RedHat)$/ {
     include 'epel'
   }
 
