@@ -10,8 +10,7 @@ Requirements
 * puppet-module-epel - https://github.com/stahnma/puppet-module-epel
 
 Usage
-_____
-
+-----
 ```
 include munki_appliance
 ```
