@@ -7,7 +7,9 @@ class munki_appliance::install {
   package { 'git': ensure => present, }
 
   class { 'python':
-    version => 'system',
+    version    => 'system',
+    dev        => true,
     virtualenv => true,
+    pip        => true,
   }
 }
