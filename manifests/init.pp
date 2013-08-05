@@ -9,6 +9,7 @@ class munki_appliance(
 
   class{'munki_appliance::groups': } ->
   class{'munki_appliance::users': } ->
+  class{'munki_appliance::repos': } ->
   class{'munki_appliance::install': } ->
   class{'munki_appliance::config': } ->
   Class['munki_appliance']
