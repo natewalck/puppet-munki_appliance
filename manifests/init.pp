@@ -7,6 +7,9 @@ class munki_appliance(
   $munki_web_admin_user  = 'munkiwebadmin',
   $munki_web_admin_dir   = '/opt/munkiwebadmin_env',
   $munki_web_admin_data  = '/etc/munkiwebadmin',
+  $time_zone   = 'America/Los_Angeles',
+  $admin_name  = 'Munki Admin',
+  $admin_email = 'munki@company.com',
 ) {
 
   class{'munki_appliance::groups': } ->
