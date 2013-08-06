@@ -11,13 +11,14 @@ class munki_appliance::munki_dirs{
     ensure  => 'directory',
     owner   => $munki_user,
     group   => $munki_group,
-    mode    => '0664',
   }
 
   file { $munki_dirs :
     ensure  => 'directory',
+    recurse => true,
     owner   => $munki_user,
     group   => $munki_group,
+    mode    => '0664',
     require => File["${munki_root}/repo"],
   }
 }
