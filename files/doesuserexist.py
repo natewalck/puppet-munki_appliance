@@ -21,9 +21,7 @@ def main():
     options, arguments = p.parse_args()
 
     if (username_present(options.username)):
-        print(1)
-    else:
-        print(0)
+        print(True)
 
 
 def username_present(username):
