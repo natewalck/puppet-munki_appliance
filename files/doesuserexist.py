@@ -27,8 +27,6 @@ def username_present(username):
     if User.objects.filter(username=username).count():
         return True
 
-    return False
-
 
 if __name__ == '__main__':
     main()
