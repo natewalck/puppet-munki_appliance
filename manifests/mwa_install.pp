@@ -13,7 +13,7 @@ class munki_appliance::mwa_install {
     ensure   => latest,
     provider => git,
     source   => 'https://code.google.com/p/munki.munkiwebadmin',
-    revision => "master",
+    revision => 'master',
     owner    => $munki_web_admin_user,
     group    => $munki_web_admin_user,
     require  => Package['git'],
@@ -25,5 +25,13 @@ class munki_appliance::mwa_install {
     mode    => '0644',
     owner   => $munki_web_admin_user,
     content => template('munki_appliance/settings.py.erb'),
+  }
+
+  file { "${munki_web_admin_dir}/munkiwebadmin/createsuperuser.py" :
+    ensure  => 'file',
+    source  => 'puppet:///modules/munki_appliance/createsuperuser.py',
+    group   => $munki_web_admin_user,
+    mode    => '0644',
+    owner   => $munki_web_admin_user,
   }
 }
