@@ -8,7 +8,7 @@ class munki_appliance::mwa_config {
   exec { 'syncdb':
     command     => "python manage.py syncdb --noinput",
     cwd         => "${munki_web_admin_dir}/munkiwebadmin",
-    path        => "${munki_web_admin_dir}/bin", 
+    path        => "${munki_web_admin_dir}/bin",
     creates     => "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.db"
   }
 }
