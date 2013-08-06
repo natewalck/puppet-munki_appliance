@@ -11,7 +11,7 @@ class munki_appliance::mwa_config {
     path        => "${munki_web_admin_dir}/bin",
     creates     => "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.db"
   }
-}
+
 
   exec { 'createsuperuser':
     command     => "python createsuperuser.py --username ${admin_username} --password ${admin_password}",
@@ -20,3 +20,4 @@ class munki_appliance::mwa_config {
     unless      => "python doesuserexist.py --username=${admin_username}",
     require     => Exec['syncdb'],
   }
+}
