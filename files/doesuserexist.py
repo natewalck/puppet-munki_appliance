@@ -20,12 +20,15 @@ def main():
 
     options, arguments = p.parse_args()
 
-    print(username_present(options.username))
+    if (username_present(options.username)):
+        print(True)
 
 
 def username_present(username):
     if User.objects.filter(username=username).count():
         return True
+
+    return False
 
 
 if __name__ == '__main__':
