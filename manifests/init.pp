@@ -10,6 +10,8 @@ class munki_appliance(
   $time_zone   = 'America/Los_Angeles',
   $admin_name  = 'Munki Admin',
   $admin_email = 'munki@company.com',
+  $admin_username  = 'munkiwebadmin',
+  $admin_password= '123456',
 ) {
 
   class{'munki_appliance::groups': } ->
@@ -18,6 +20,7 @@ class munki_appliance(
   class{'munki_appliance::install': } ->
   class{'munki_appliance::virtualenv': } ->
   class{'munki_appliance::mwa_install': } ->
+  class{'munki_appliance::mwa_config': } ->
   class{'munki_appliance::vhosts': } ->
   class{'munki_appliance::munki_dirs': } ->
   Class['munki_appliance']
