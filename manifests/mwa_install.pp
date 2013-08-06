@@ -34,4 +34,12 @@ class munki_appliance::mwa_install {
     mode    => '0644',
     owner   => $munki_web_admin_user,
   }
+
+  file { "${munki_web_admin_dir}/munkiwebadmin/doesuserexist.py" :
+    ensure  => 'file',
+    source  => 'puppet:///modules/munki_appliance/doesuserexist.py',
+    group   => $munki_web_admin_user,
+    mode    => '0644',
+    owner   => $munki_web_admin_user,
+  }
 }
