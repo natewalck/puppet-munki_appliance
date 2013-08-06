@@ -1,5 +1,6 @@
 from django.core.management import setup_environ
 import optparse
+import sys
 import settings
 
 import warnings
@@ -21,7 +22,9 @@ def main():
     options, arguments = p.parse_args()
 
     if (username_present(options.username)):
-        print(True)
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
 
 def username_present(username):
