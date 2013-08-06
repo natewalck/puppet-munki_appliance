@@ -22,9 +22,9 @@ def main():
     options, arguments = p.parse_args()
 
     if (username_present(options.username)):
-        sys.exit(1)
-    else:
         sys.exit(0)
+    else:
+        sys.exit(1)
 
 
 def username_present(username):
