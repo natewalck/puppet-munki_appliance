@@ -25,6 +25,7 @@ class munki_appliance::mwa_install {
     mode    => '0644',
     owner   => $munki_web_admin_user,
     content => template('munki_appliance/settings.py.erb'),
+    require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
 
   file { "${munki_web_admin_dir}/munkiwebadmin/createsuperuser.py" :
@@ -33,6 +34,7 @@ class munki_appliance::mwa_install {
     group   => $munki_web_admin_user,
     mode    => '0644',
     owner   => $munki_web_admin_user,
+    require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
 
   file { "${munki_web_admin_dir}/munkiwebadmin/doesuserexist.py" :
@@ -41,5 +43,6 @@ class munki_appliance::mwa_install {
     group   => $munki_web_admin_user,
     mode    => '0644',
     owner   => $munki_web_admin_user,
+    require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
 }
