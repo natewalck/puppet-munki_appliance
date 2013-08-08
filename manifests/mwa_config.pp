@@ -26,6 +26,14 @@ class munki_appliance::mwa_config {
     creates     => "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.db"
   }
 
+  exec { 'collectstatic':
+    user        => $munki_web_admin_user,
+    command     => 'python manage.py collectstatic --noinput',
+    cwd         => "${munki_web_admin_dir}/munkiwebadmin",
+    path        => "${munki_web_admin_dir}/bin",
+    creates     => "${munki_web_admin_dir}/munkiwebadmin/static/admin"
+  }
+
   exec { 'createsuperuser':
     user        => $munki_web_admin_user,
     command     => "python createsuperuser.py --username ${admin_username} --password ${admin_password}",
