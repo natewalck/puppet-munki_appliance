@@ -3,6 +3,7 @@
 class munki_appliance::mwa_vhost {
   $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
+  $munki_web_admin_port = $munki_appliance::munki_web_admin_port
 
   $http_config_path = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',
@@ -21,11 +22,11 @@ class munki_appliance::mwa_vhost {
 
   file_line { 'set listen port' :
     path => "${http_dir}/ports.conf",
-    line => 'Listen 8000',
+    line => "Listen ${munki_web_admin_port}",
   }
 
-  file_line { 'set listen port' :
+  file_line { 'set NameVirtualHost port' :
     path => "${http_dir}/ports.conf",
-    line => 'NameVirtualHost *:8000',
+    line => "NameVirtualHost *:${munki_web_admin_port}",
   }
 }

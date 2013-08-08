@@ -1,4 +1,4 @@
-<VirtualHost *:8000>
+<VirtualHost *:<%= @munki_web_admin_port %>>
    WSGIScriptAlias / <%= @munki_web_admin_dir %>/munkiwebadmin/munkiwebadmin.wsgi
    WSGIDaemonProcess munkiwebadmin user=<%= @munki_web_admin_user %> group=munki
    Alias /static/ <%= @munki_web_admin_dir %>/munkiwebadmin/static/
