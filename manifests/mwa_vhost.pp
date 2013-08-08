@@ -7,7 +7,7 @@ class munki_appliance::mwa_vhost {
 
   $http_config_path = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',
-    'Debian' => '/etc/apache2/sites-available'
+    'Debian' => '/etc/apache2/sites-enabled'
   }
 
   $http_dir = $::osfamily ? {
