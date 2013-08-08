@@ -19,12 +19,12 @@ class munki_appliance(
   class{'munki_appliance::users': } ->
   class{'munki_appliance::software_repos': } ->
   class{'munki_appliance::install': } ->
+  class{'munki_appliance::vhosts': } ->
+  class{'munki_appliance::munki_dirs': } ->
   class{'munki_appliance::virtualenv': } ->
   class{'munki_appliance::mwa_install': } ->
   class{'munki_appliance::mwa_config': } ->
   class{'munki_appliance::mwa_vhost': } ->
-  class{'munki_appliance::vhosts': } ->
-  class{'munki_appliance::munki_dirs': } ->
   Class['munki_appliance']
 
 }
