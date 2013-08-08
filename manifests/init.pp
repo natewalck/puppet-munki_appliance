@@ -15,6 +15,10 @@ class munki_appliance(
   $admin_password= '123456',
 ) {
 
+  unless $::osfamily == 'RedHat' {
+    fail("Unsupported osfamily ${::osfamily}")
+  }
+
   class{'munki_appliance::groups': } ->
   class{'munki_appliance::users': } ->
   class{'munki_appliance::software_repos': } ->
