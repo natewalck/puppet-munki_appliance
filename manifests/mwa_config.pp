@@ -6,9 +6,14 @@ class munki_appliance::mwa_config {
   $admin_username  = $munki_appliance::admin_username
   $admin_password  = $munki_appliance::admin_password
 
-  $httpconf = $::osfamily ? {
-    'RedHat' => '/etc/httpd/conf/httpd.conf',
-    'Debian' => '/etc/apache2/apache2.conf'
+  $http_dir = $::osfamily ? {
+    'RedHat' => '/etc/httpd/conf/',
+    'Debian' => '/etc/apache2/'
+  }
+
+  $http_conf = $::osfamily ? {
+    'RedHat' => 'httpd.conf',
+    'Debian' => 'apache2.conf'
   }
 
   include apache::mod::wsgi
@@ -37,7 +42,7 @@ class munki_appliance::mwa_config {
   }
 
   file_line { 'wsgi socket prefix' :
-    path => $httpconf,
+    path => "${http_dir}/${http_conf}",
     line => 'WSGISocketPrefix /var/run/wsgi',
     require => File['/var/run/wsgi'],
   }

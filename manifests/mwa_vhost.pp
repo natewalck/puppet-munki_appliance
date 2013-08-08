@@ -4,15 +4,28 @@ class munki_appliance::mwa_vhost {
   $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
 
-  $http_path = $::osfamily ? {
+  $http_config_path = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',
     'Debian' => '/etc/apache2/sites-available'
   }
 
-  file { "${http_path}/25-${::hostname}.conf" :
+  $http_dir = $::osfamily ? {
+    'RedHat' => '/etc/httpd/conf/',
+    'Debian' => '/etc/apache2/'
+  }
+
+  file { "${http_config_path}/25-${::hostname}.conf" :
     ensure => present,
     content => template('munki_appliance/25-puppetdev01.conf.erb'),
   }
 
+  file_line { 'set listen port' :
+    path => "${http_dir}/ports.conf",
+    line => 'Listen 8000',
+  }
 
+  file_line { 'set listen port' :
+    path => "${http_dir}/ports.conf",
+    line => 'NameVirtualHost *:8000',
+  }
 }
