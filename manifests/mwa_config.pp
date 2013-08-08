@@ -11,6 +11,8 @@ class munki_appliance::mwa_config {
     'Debian' => '/etc/apache2/apache2.conf'
   }
 
+  include apache::mod::wsgi
+
   exec { 'syncdb':
     user        => $munki_web_admin_user,
     command     => 'python manage.py syncdb --noinput',
