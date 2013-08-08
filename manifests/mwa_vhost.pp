@@ -20,13 +20,15 @@ class munki_appliance::mwa_vhost {
     content => template('munki_appliance/25-puppetdev01.conf.erb'),
   }
 
-  file_line { 'set listen port' :
-    path => "${http_dir}/ports.conf",
-    line => "Listen ${munki_web_admin_port}",
-  }
-
   file_line { 'set NameVirtualHost port' :
     path => "${http_dir}/ports.conf",
     line => "NameVirtualHost *:${munki_web_admin_port}",
   }
+
+  file_line { 'set listen port' :
+    path => "${http_dir}/ports.conf",
+    line => "Listen ${munki_web_admin_port}",
+    notify  => Service['httpd'],
+  }
+
 }
