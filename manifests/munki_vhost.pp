@@ -1,6 +1,6 @@
-# /etc/puppet/modules/munki_appliance/manifests/vhosts.pp
+# /etc/puppet/modules/munki_appliance/manifests/munki_vhost.pp
 
-class munki_appliance::vhosts{
+class munki_appliance::munki_vhost{
   $munki_root  = $munki_appliance::munki_root
   $munki_port  = $munki_appliance::munki_port
   $munki_user  = $munki_appliance::munki_user
