@@ -18,6 +18,7 @@ class munki_appliance::mwa_vhost {
   file { "${http_config_path}/25-${::hostname}.conf" :
     ensure => present,
     content => template('munki_appliance/25-puppetdev01.conf.erb'),
+    notify  => Service['httpd'],
   }
 
   file_line { 'set NameVirtualHost port' :
