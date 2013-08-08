@@ -42,7 +42,7 @@ class munki_appliance::mwa_config {
     require => File['/var/run/wsgi'],
   }
 
-  file { "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.wsgi",
+  file { "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.wsgi" :
     ensure => present,
     owner => $munki_web_admin_user,
     group => $munki_web_admin_user,
