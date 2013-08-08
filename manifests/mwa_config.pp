@@ -46,6 +46,7 @@ class munki_appliance::mwa_config {
     ensure => present,
     owner => $munki_web_admin_user,
     group => $munki_web_admin_user,
+    content => template('munkiwebadmin.wsgi.erb'),
   }
 
 }
