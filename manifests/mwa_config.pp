@@ -7,7 +7,7 @@ class munki_appliance::mwa_config {
   $admin_password  = $munki_appliance::admin_password
 
   $httpconf = $::osfamily ? {
-    'RedHat' => '/etc/httpd/httpd.conf',
+    'RedHat' => '/etc/httpd/conf/httpd.conf',
     'Debian' => '/etc/apache2/apache2.conf'
   }
 
