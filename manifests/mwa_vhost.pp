@@ -1,6 +1,6 @@
-# /etc/puppet/modules/munki_appliance/manifests/mwa_config.pp
+# /etc/puppet/modules/munki_appliance/manifests/mwa_vhost.pp
 
-class munki_appliance::mwa_config {
+class munki_appliance::mwa_vhost {
   $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
 
