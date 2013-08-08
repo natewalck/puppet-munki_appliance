@@ -32,7 +32,7 @@ class munki_appliance::mwa_config {
 
   file { '/var/run/wsgi' :
     ensure => directory,
-    owner => 'munkiwebadmin',
+    owner => $munki_web_admin_user,
     group => 'root',
   }
 
@@ -41,4 +41,11 @@ class munki_appliance::mwa_config {
     line => 'WSGISocketPrefix /var/run/wsgi',
     require => File['/var/run/wsgi'],
   }
+
+  file { "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.wsgi",
+    ensure => present,
+    owner => $munki_web_admin_user,
+    group => $munki_web_admin_user,
+  }
+
 }
