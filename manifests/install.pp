@@ -19,5 +19,4 @@ class munki_appliance::install {
     content => 'django==1.5.1',
     require => File[$munki_web_admin_data],
   }
-
 }
