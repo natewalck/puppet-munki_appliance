@@ -1,0 +1,11 @@
+<VirtualHost *:8000>
+   WSGIScriptAlias / <%= @munki_web_admin_dir %>/munkiwebadmin/munkiwebadmin.wsgi
+   WSGIDaemonProcess munkiwebadmin user=<%= @munki_web_admin_user %> group=munki
+   Alias /static/ <%= @munki_web_admin_dir %>/munkiwebadmin/static/
+   <Directory <%= @munki_web_admin_dir %>/munkiwebadmin>
+       WSGIProcessGroup <%= @munki_web_admin_user %>
+       WSGIApplicationGroup %{GLOBAL}
+       Order deny,allow
+       Allow from all
+   </Directory>
+</VirtualHost>
