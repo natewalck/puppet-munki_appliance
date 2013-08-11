@@ -21,7 +21,7 @@ class munki_appliance::samba {
     ],
     shares => {
       'repo' => [
-        'comment = Pictures',
+        'comment = Munki Repo',
         "path = ${munki_root}/repo",
         'browseable = yes',
         'writable = yes',
