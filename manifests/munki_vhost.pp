@@ -16,7 +16,7 @@ class munki_appliance::munki_vhost{
     docroot_owner => $munki_user,
     docroot_group => $munki_group,
     options       => ['-Indexes'],
-    rewrite_rule  => "^/$ http://${::hostname}:${munki_web_admin_port} [R]"
+    rewrite_rule  => "^/$ http://${::hostname}:${munki_web_admin_port} [R]",
     ssl           => $ssl_enabled,
     ssl_cert      => $ssl_cert,
     ssl_key       => $ssl_key,
