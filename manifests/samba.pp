@@ -1,7 +1,8 @@
 # Setup samba share for munki appliance
 class munki_appliance::samba {
-$munki_user = $munki_appliance::munki_user
-$munki_root = $munki_appliance::munki_root
+  $munki_user = $munki_appliance::munki_user
+  $munki_root = $munki_appliance::munki_root
+  $admin_password= '123456',
 
   class { 'samba::server':
 
@@ -28,5 +29,11 @@ $munki_root = $munki_appliance::munki_root
       ],
     },
     selinux_enable_home_dirs => false,
+  }
+
+  exec { 'createsuperuser':
+    command     => "echo -ne "${admin_password}\n${admin_password}\n" | smbpasswd -a -s ${munki_user}",
+    unless      => "pdbedit -L | grep ${munki_user}",
+    require     => Class['samba::server'],
   }
 }
