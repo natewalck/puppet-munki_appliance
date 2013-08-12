@@ -29,6 +29,7 @@ class munki_appliance(
   class{'munki_appliance::mwa_install': } ->
   class{'munki_appliance::mwa_config': } ->
   class{'munki_appliance::mwa_vhost': } ->
+  class{'munki_appliance::samba': } ->
   Class['munki_appliance']
 
 }
