@@ -2,7 +2,7 @@
 class munki_appliance::samba {
   $munki_user = $munki_appliance::munki_user
   $munki_root = $munki_appliance::munki_root
-  $admin_password= '123456',
+  $admin_password= '123456'
 
   class { 'samba::server':
 
@@ -31,9 +31,9 @@ class munki_appliance::samba {
     selinux_enable_home_dirs => false,
   }
 
-  exec { 'createsuperuser':
-    command     => "echo -ne "${admin_password}\n${admin_password}\n" | smbpasswd -a -s ${munki_user}",
-    unless      => "pdbedit -L | grep ${munki_user}",
+  exec { 'create samba password':
+    command     => "/bin/echo -ne '${admin_password}\n${admin_password}\n' | /usr/bin/smbpasswd -a -s ${munki_user}",
+    unless      => "/usr/bin/pdbedit -L | /bin/grep ${munki_user}",
     require     => Class['samba::server'],
   }
 }
