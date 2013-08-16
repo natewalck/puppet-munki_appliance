@@ -1,9 +1,9 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_vhost.pp
 
 class munki_appliance::mwa_vhost {
-  $mwa_dir  = $munki_appliance::mwa_dir
-  $mwa_service_account  = $munki_appliance::mwa_service_account
-  $mwa_port = $munki_appliance::mwa_port
+  $mwa_dir             = $munki_appliance::mwa_dir
+  $mwa_service_account = $munki_appliance::mwa_service_account
+  $mwa_port            = $munki_appliance::mwa_port
 
   $http_config_path = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',

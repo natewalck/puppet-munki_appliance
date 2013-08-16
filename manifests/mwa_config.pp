@@ -1,7 +1,7 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_config.pp
 
 class munki_appliance::mwa_config {
-  $mwa_dir = $munki_appliance::mwa_dir
+  $mwa_dir             = $munki_appliance::mwa_dir
   $mwa_service_account = $munki_appliance::mwa_service_account
   $admin_username      = $munki_appliance::admin_username
   $admin_password      = $munki_appliance::admin_password

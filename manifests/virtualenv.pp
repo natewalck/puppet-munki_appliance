@@ -1,9 +1,9 @@
 # /etc/puppet/modules/munki_appliance/manifests/virtualenv.pp
 
 class munki_appliance::virtualenv {
-  $mwa_service_account  = $munki_appliance::mwa_service_account
-  $mwa_dir  = $munki_appliance::mwa_dir
-  $mwa_data = $munki_appliance::mwa_data
+  $mwa_service_account = $munki_appliance::mwa_service_account
+  $mwa_dir             = $munki_appliance::mwa_dir
+  $mwa_data            = $munki_appliance::mwa_data
 
   file { '/opt': ensure => directory, owner => $mwa_service_account, }
 
