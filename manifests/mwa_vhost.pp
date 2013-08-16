@@ -3,7 +3,7 @@
 class munki_appliance::mwa_vhost {
   $mwa_dir  = $munki_appliance::mwa_dir
   $mwa_service_account  = $munki_appliance::mwa_service_account
-  $munki_web_admin_port = $munki_appliance::munki_web_admin_port
+  $mwa_port = $munki_appliance::mwa_port
 
   $http_config_path = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf.d',
@@ -23,12 +23,12 @@ class munki_appliance::mwa_vhost {
 
   file_line { 'set NameVirtualHost port' :
     path => "${http_dir}/ports.conf",
-    line => "NameVirtualHost *:${munki_web_admin_port}",
+    line => "NameVirtualHost *:${mwa_port}",
   }
 
   file_line { 'set listen port' :
     path   => "${http_dir}/ports.conf",
-    line   => "Listen ${munki_web_admin_port}",
+    line   => "Listen ${mwa_port}",
     notify => Service['httpd'],
   }
 

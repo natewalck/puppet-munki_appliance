@@ -8,7 +8,7 @@ class munki_appliance::munki_vhost{
   $ssl_enabled          = $munki_appliance::ssl_enabled
   $ssl_cert             = $munki_appliance::ssl_cert
   $ssl_key              = $munki_appliance::ssl_key
-  $munki_web_admin_port = $munki_appliance::munki_web_admin_port
+  $mwa_port = $munki_appliance::mwa_port
 
   apache::vhost { $::fqdn :
     port          => $munki_port,
@@ -16,7 +16,7 @@ class munki_appliance::munki_vhost{
     docroot_owner => $munki_user,
     docroot_group => $munki_group,
     options       => ['-Indexes'],
-    rewrite_rule  => "^/$ http://${::hostname}:${munki_web_admin_port} [R]",
+    rewrite_rule  => "^/$ http://${::hostname}:${mwa_port} [R]",
     ssl           => $ssl_enabled,
     ssl_cert      => $ssl_cert,
     ssl_key       => $ssl_key,
