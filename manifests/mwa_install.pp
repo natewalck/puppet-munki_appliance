@@ -3,7 +3,7 @@
 class munki_appliance::mwa_install {
   $mwa_service_account  = $munki_appliance::mwa_service_account
   $mwa_dir  = $munki_appliance::mwa_dir
-  $munki_web_admin_data = $munki_appliance::munki_web_admin_data
+  $mwa_data = $munki_appliance::mwa_data
   $munki_root           = $munki_appliance::munki_root
   $time_Zone            = $munki_appliance::time_zone
   $admin_name           = $munki_appliance::admin_name

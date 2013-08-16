@@ -6,7 +6,7 @@ class munki_appliance(
   $munki_group          = 'munki',
   $mwa_service_account  = 'munkiwebadmin',
   $mwa_dir  = '/opt/munkiwebadmin_env',
-  $munki_web_admin_data = '/etc/munkiwebadmin',
+  $mwa_data = '/etc/munkiwebadmin',
   $munki_web_admin_port = '8000',
   $time_zone            = 'America/Los_Angeles',
   $admin_name           = 'Munki Admin',
