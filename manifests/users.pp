@@ -2,15 +2,15 @@
 
 class munki_appliance::users {
 
-  $munki_user           = $munki_appliance::munki_user
-  $munki_web_admin_user = $munki_appliance::munki_web_admin_user
+  $munki_user          = $munki_appliance::munki_user
+  $mwa_service_account = $munki_appliance::mwa_service_account
 
   user { $munki_user :
     ensure => present,
     groups => munki,
   }
 
-  user { $munki_web_admin_user :
+  user { $mwa_service_account :
     ensure => present,
     groups => munki,
   }

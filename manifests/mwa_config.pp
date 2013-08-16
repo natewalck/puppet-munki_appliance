@@ -1,10 +1,10 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_config.pp
 
 class munki_appliance::mwa_config {
-  $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
-  $munki_web_admin_user = $munki_appliance::munki_web_admin_user
-  $admin_username       = $munki_appliance::admin_username
-  $admin_password       = $munki_appliance::admin_password
+  $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
+  $mwa_service_account = $munki_appliance::mwa_service_account
+  $admin_username      = $munki_appliance::admin_username
+  $admin_password      = $munki_appliance::admin_password
 
   $http_dir = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf/',
@@ -19,7 +19,7 @@ class munki_appliance::mwa_config {
   include apache::mod::wsgi
 
   exec { 'syncdb':
-    user        => $munki_web_admin_user,
+    user        => $mwa_service_account,
     command     => 'python manage.py syncdb --noinput',
     cwd         => "${munki_web_admin_dir}/munkiwebadmin",
     path        => "${munki_web_admin_dir}/bin",
@@ -27,7 +27,7 @@ class munki_appliance::mwa_config {
   }
 
   exec { 'collectstatic':
-    user        => $munki_web_admin_user,
+    user        => $mwa_service_account,
     command     => 'python manage.py collectstatic --noinput',
     cwd         => "${munki_web_admin_dir}/munkiwebadmin",
     path        => "${munki_web_admin_dir}/bin",
@@ -35,7 +35,7 @@ class munki_appliance::mwa_config {
   }
 
   exec { 'createsuperuser':
-    user        => $munki_web_admin_user,
+    user        => $mwa_service_account,
     command     => "python createsuperuser.py --username ${admin_username} --password ${admin_password}",
     cwd         => "${munki_web_admin_dir}/munkiwebadmin",
     path        => "${munki_web_admin_dir}/bin",
@@ -45,7 +45,7 @@ class munki_appliance::mwa_config {
 
   file { '/var/run/wsgi' :
     ensure => directory,
-    owner  => $munki_web_admin_user,
+    owner  => $mwa_service_account,
     group  => 'root',
   }
 
@@ -57,8 +57,8 @@ class munki_appliance::mwa_config {
 
   file { "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.wsgi" :
     ensure  => present,
-    owner   => $munki_web_admin_user,
-    group   => $munki_web_admin_user,
+    owner   => $mwa_service_account,
+    group   => $mwa_service_account,
     content => template('munki_appliance/munkiwebadmin.wsgi.erb'),
   }
 

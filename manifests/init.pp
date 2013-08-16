@@ -4,7 +4,7 @@ class munki_appliance(
   $munki_port           = '80',
   $munki_user           = 'munki',
   $munki_group          = 'munki',
-  $munki_web_admin_user = 'munkiwebadmin',
+  $mwa_service_account  = 'munkiwebadmin',
   $munki_web_admin_dir  = '/opt/munkiwebadmin_env',
   $munki_web_admin_data = '/etc/munkiwebadmin',
   $munki_web_admin_port = '8000',

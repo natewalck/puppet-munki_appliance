@@ -1,7 +1,7 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_install.pp
 
 class munki_appliance::mwa_install {
-  $munki_web_admin_user = $munki_appliance::munki_web_admin_user
+  $mwa_service_account  = $munki_appliance::mwa_service_account
   $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_data = $munki_appliance::munki_web_admin_data
   $munki_root           = $munki_appliance::munki_root
@@ -14,16 +14,16 @@ class munki_appliance::mwa_install {
     provider => git,
     source   => 'https://code.google.com/p/munki.munkiwebadmin',
     revision => 'master',
-    owner    => $munki_web_admin_user,
-    group    => $munki_web_admin_user,
+    owner    => $mwa_service_account,
+    group    => $mwa_service_account,
     require  => Package['git'],
   }
 
   file { "${munki_web_admin_dir}/munkiwebadmin/settings.py" :
     ensure  => present,
-    group   => $munki_web_admin_user,
+    group   => $mwa_service_account,
     mode    => '0644',
-    owner   => $munki_web_admin_user,
+    owner   => $mwa_service_account,
     content => template('munki_appliance/settings.py.erb'),
     require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
@@ -31,18 +31,18 @@ class munki_appliance::mwa_install {
   file { "${munki_web_admin_dir}/munkiwebadmin/createsuperuser.py" :
     ensure  => 'file',
     source  => 'puppet:///modules/munki_appliance/createsuperuser.py',
-    group   => $munki_web_admin_user,
+    group   => $mwa_service_account,
     mode    => '0644',
-    owner   => $munki_web_admin_user,
+    owner   => $mwa_service_account,
     require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
 
   file { "${munki_web_admin_dir}/munkiwebadmin/doesuserexist.py" :
     ensure  => 'file',
     source  => 'puppet:///modules/munki_appliance/doesuserexist.py',
-    group   => $munki_web_admin_user,
+    group   => $mwa_service_account,
     mode    => '0644',
-    owner   => $munki_web_admin_user,
+    owner   => $mwa_service_account,
     require => Vcsrepo["${munki_web_admin_dir}/munkiwebadmin"],
   }
 }

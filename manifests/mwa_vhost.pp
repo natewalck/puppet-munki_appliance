@@ -2,7 +2,7 @@
 
 class munki_appliance::mwa_vhost {
   $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
-  $munki_web_admin_user = $munki_appliance::munki_web_admin_user
+  $mwa_service_account  = $munki_appliance::mwa_service_account
   $munki_web_admin_port = $munki_appliance::munki_web_admin_port
 
   $http_config_path = $::osfamily ? {
