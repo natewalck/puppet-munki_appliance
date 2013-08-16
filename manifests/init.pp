@@ -1,18 +1,18 @@
 # /etc/puppet/modules/munki_appliance/manifests/init.pp
 class munki_appliance(
-  $munki_root  = '/var/www/munki',
-  $munki_port  = '80',
-  $munki_user  = 'munki',
-  $munki_group = 'munki',
-  $munki_web_admin_user  = 'munkiwebadmin',
-  $munki_web_admin_dir   = '/opt/munkiwebadmin_env',
-  $munki_web_admin_data  = '/etc/munkiwebadmin',
-  $munki_web_admin_port= '8000',
-  $time_zone   = 'America/Los_Angeles',
-  $admin_name  = 'Munki Admin',
-  $admin_email = 'munki@company.com',
-  $admin_username  = 'munkiwebadmin',
-  $admin_password= '123456',
+  $munki_root           = '/var/www/munki',
+  $munki_port           = '80',
+  $munki_user           = 'munki',
+  $munki_group          = 'munki',
+  $munki_web_admin_user = 'munkiwebadmin',
+  $munki_web_admin_dir  = '/opt/munkiwebadmin_env',
+  $munki_web_admin_data = '/etc/munkiwebadmin',
+  $munki_web_admin_port = '8000',
+  $time_zone            = 'America/Los_Angeles',
+  $admin_name           = 'Munki Admin',
+  $admin_email          = 'munki@company.com',
+  $admin_username       = 'munkiwebadmin',
+  $admin_password       = '123456',
 ) {
 
   unless $::osfamily == 'RedHat' {

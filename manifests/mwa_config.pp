@@ -1,10 +1,10 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_config.pp
 
 class munki_appliance::mwa_config {
-  $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
+  $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
-  $admin_username  = $munki_appliance::admin_username
-  $admin_password  = $munki_appliance::admin_password
+  $admin_username       = $munki_appliance::admin_username
+  $admin_password       = $munki_appliance::admin_password
 
   $http_dir = $::osfamily ? {
     'RedHat' => '/etc/httpd/conf/',
@@ -45,20 +45,20 @@ class munki_appliance::mwa_config {
 
   file { '/var/run/wsgi' :
     ensure => directory,
-    owner => $munki_web_admin_user,
-    group => 'root',
+    owner  => $munki_web_admin_user,
+    group  => 'root',
   }
 
   file_line { 'wsgi socket prefix' :
-    path => "${http_dir}/${http_conf}",
-    line => 'WSGISocketPrefix /var/run/wsgi',
+    path    => "${http_dir}/${http_conf}",
+    line    => 'WSGISocketPrefix /var/run/wsgi',
     require => File['/var/run/wsgi'],
   }
 
   file { "${munki_web_admin_dir}/munkiwebadmin/munkiwebadmin.wsgi" :
-    ensure => present,
-    owner => $munki_web_admin_user,
-    group => $munki_web_admin_user,
+    ensure  => present,
+    owner   => $munki_web_admin_user,
+    group   => $munki_web_admin_user,
     content => template('munki_appliance/munkiwebadmin.wsgi.erb'),
   }
 

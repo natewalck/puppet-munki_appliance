@@ -1,7 +1,7 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_vhost.pp
 
 class munki_appliance::mwa_vhost {
-  $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
+  $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
   $munki_web_admin_port = $munki_appliance::munki_web_admin_port
 
@@ -16,7 +16,7 @@ class munki_appliance::mwa_vhost {
   }
 
   file { "${http_config_path}/25-${::hostname}.conf" :
-    ensure => present,
+    ensure  => present,
     content => template('munki_appliance/munkiwebadmin.conf.erb'),
     notify  => Service['httpd'],
   }
@@ -27,9 +27,9 @@ class munki_appliance::mwa_vhost {
   }
 
   file_line { 'set listen port' :
-    path => "${http_dir}/ports.conf",
-    line => "Listen ${munki_web_admin_port}",
-    notify  => Service['httpd'],
+    path   => "${http_dir}/ports.conf",
+    line   => "Listen ${munki_web_admin_port}",
+    notify => Service['httpd'],
   }
 
 }

@@ -2,12 +2,12 @@
 
 class munki_appliance::mwa_install {
   $munki_web_admin_user = $munki_appliance::munki_web_admin_user
-  $munki_web_admin_dir = $munki_appliance::munki_web_admin_dir
+  $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
   $munki_web_admin_data = $munki_appliance::munki_web_admin_data
-  $munki_root  = $munki_appliance::munki_root
-  $time_Zone   = $munki_appliance::time_zone
-  $admin_name  = $munki_appliance::admin_name
-  $admin_email = $munki_appliance::admin_email
+  $munki_root           = $munki_appliance::munki_root
+  $time_Zone            = $munki_appliance::time_zone
+  $admin_name           = $munki_appliance::admin_name
+  $admin_email          = $munki_appliance::admin_email
 
   vcsrepo { "${munki_web_admin_dir}/munkiwebadmin" :
     ensure   => latest,

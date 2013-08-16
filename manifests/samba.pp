@@ -1,8 +1,8 @@
 # Setup samba share for munki appliance
 class munki_appliance::samba {
-  $munki_user = $munki_appliance::munki_user
-  $munki_root = $munki_appliance::munki_root
-  $admin_password= '123456'
+  $munki_user     = $munki_appliance::munki_user
+  $munki_root     = $munki_appliance::munki_root
+  $admin_password = '123456'
 
   class { 'samba::server':
 
@@ -21,10 +21,10 @@ class munki_appliance::samba {
     ],
     shares => {
       'repo' => [
-        'comment = Munki Repo',
-        "path = ${munki_root}/repo",
-        'browseable = yes',
-        'writable = yes',
+        'comment     = Munki Repo',
+        "path        = ${munki_root}/repo",
+        'browseable  = yes',
+        'writable    = yes',
         "valid users = ${munki_user}",
       ],
     },
