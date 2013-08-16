@@ -1,9 +1,9 @@
-<VirtualHost *:<%= @munki_web_admin_port %>>
-   WSGIScriptAlias / <%= @munki_web_admin_dir %>/munkiwebadmin/munkiwebadmin.wsgi
-   WSGIDaemonProcess munkiwebadmin user=<%= @munki_web_admin_user %> group=munki
-   Alias /static/ <%= @munki_web_admin_dir %>/munkiwebadmin/static/
-   <Directory <%= @munki_web_admin_dir %>/munkiwebadmin>
-       WSGIProcessGroup <%= @munki_web_admin_user %>
+<VirtualHost *:<%= @mwa_port %>>
+   WSGIScriptAlias / <%= @mwa_dir %>/munkiwebadmin/munkiwebadmin.wsgi
+   WSGIDaemonProcess munkiwebadmin user=<%= @mwa_service_account %> group=munki
+   Alias /static/ <%= @mwa_dir %>/munkiwebadmin/static/
+   <Directory <%= @mwa_dir %>/munkiwebadmin>
+       WSGIProcessGroup <%= @mwa_service_account %>
        WSGIApplicationGroup %{GLOBAL}
        Order deny,allow
        Allow from all
