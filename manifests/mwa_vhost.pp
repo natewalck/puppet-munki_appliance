@@ -1,7 +1,7 @@
 # /etc/puppet/modules/munki_appliance/manifests/mwa_vhost.pp
 
 class munki_appliance::mwa_vhost {
-  $munki_web_admin_dir  = $munki_appliance::munki_web_admin_dir
+  $mwa_dir  = $munki_appliance::mwa_dir
   $mwa_service_account  = $munki_appliance::mwa_service_account
   $munki_web_admin_port = $munki_appliance::munki_web_admin_port
 
