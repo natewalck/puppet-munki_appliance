@@ -1,6 +1,6 @@
 <VirtualHost *:<%= @mwa_port %>>
    WSGIScriptAlias / <%= @mwa_dir %>/munkiwebadmin/munkiwebadmin.wsgi
-   WSGIDaemonProcess munkiwebadmin user=<%= @mwa_service_account %> group=munki
+   WSGIDaemonProcess munkiwebadmin user=<%= @mwa_service_account %> group=<%= @munki_group %>
    Alias /static/ <%= @mwa_dir %>/munkiwebadmin/static/
    <Directory <%= @mwa_dir %>/munkiwebadmin>
        WSGIProcessGroup <%= @mwa_service_account %>
