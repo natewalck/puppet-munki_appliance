@@ -7,10 +7,11 @@ class munki_appliance::munki_dirs{
   $munki_dirs  = ["${munki_root}/repo/catalogs", "${munki_root}/repo/manifests",
                   "${munki_root}/repo/pkgs", "${munki_root}/repo/pkgsinfo"]
 
-  file { "${munki_root}/repo" :
-    ensure  => 'directory',
-    owner   => $munki_user,
-    group   => $munki_group,
+  vcsrepo { "${munki_root}/repo" :
+    ensure   => present,
+    provider => git,
+    owner    => $munki_user,
+    group    => $munki_group,
   }
 
   file { $munki_dirs :
@@ -19,6 +20,6 @@ class munki_appliance::munki_dirs{
     owner   => $munki_user,
     group   => $munki_group,
     mode    => '0664',
-    require => File["${munki_root}/repo"],
+    require => Vcsrepo["${munki_root}/repo"],
   }
 }
