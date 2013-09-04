@@ -1,5 +1,5 @@
 name    'natewalck-munki_appliance'
-version '0.1.0'
+version '0.1.1'
 license 'Apache License, Version 2.0'
 summary 'Munki Appliance Module'
 description 'Puppet Module for configuring the munki appliance'
