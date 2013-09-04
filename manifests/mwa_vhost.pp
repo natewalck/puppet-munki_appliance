@@ -21,15 +21,7 @@ class munki_appliance::mwa_vhost {
     notify  => Service['httpd'],
   }
 
-  file_line { 'set NameVirtualHost port' :
-    path => "${http_dir}/ports.conf",
-    line => "NameVirtualHost *:${mwa_port}",
-  }
-
-  file_line { 'set listen port' :
-    path   => "${http_dir}/ports.conf",
-    line   => "Listen ${mwa_port}",
-    notify => Service['httpd'],
-  }
+  apache::namevirtualhost { "*:${mwa_port}" : }
+  apache::listen { "${mwa_port}" : }
 
 }
