@@ -11,14 +11,14 @@ class munki_appliance::munki_vhost{
   $mwa_port    = $munki_appliance::mwa_port
 
   apache::vhost { $::fqdn :
-    port          => $munki_port,
-    docroot       => $munki_root,
-    docroot_owner => $munki_user,
-    docroot_group => $munki_group,
-    options       => ['-Indexes'],
-    rewrite_rule  => "^/$ http://${::hostname}:${mwa_port} [R]",
-    ssl           => $ssl_enabled,
-    ssl_cert      => $ssl_cert,
-    ssl_key       => $ssl_key,
+    port            => $munki_port,
+    docroot         => $munki_root,
+    docroot_owner   => $munki_user,
+    docroot_group   => $munki_group,
+    options         => ['-Indexes'],
+    ssl             => $ssl_enabled,
+    ssl_cert        => $ssl_cert,
+    ssl_key         => $ssl_key,
+    custom_fragment => template('munki_appliance/munkirewrites.erb'),
   }
 }

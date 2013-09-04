@@ -1,0 +1,7 @@
+## Rewrite rules
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/$ http://%{HTTP_HOST}:8000/ [R,L]
+
+RewriteCond %{HTTPS} =on
+RewriteRule ^/$ https://%{HTTP_HOST}:8000/ [R,L]
