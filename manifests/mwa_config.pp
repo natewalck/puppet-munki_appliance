@@ -49,12 +49,6 @@ class munki_appliance::mwa_config {
     group  => 'root',
   }
 
-  file_line { 'wsgi socket prefix' :
-    path    => "${http_dir}/${http_conf}",
-    line    => 'WSGISocketPrefix /var/run/wsgi',
-    require => File['/var/run/wsgi'],
-  }
-
   file { "${mwa_dir}/munkiwebadmin/munkiwebadmin.wsgi" :
     ensure  => present,
     owner   => $mwa_service_account,
