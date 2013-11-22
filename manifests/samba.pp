@@ -2,7 +2,7 @@
 class munki_appliance::samba {
   $munki_user     = $munki_appliance::munki_user
   $munki_root     = $munki_appliance::munki_root
-  $admin_password = '123456'
+  $admin_password = $munki_appliance::admin_password
 
   class { 'samba::server':
 
