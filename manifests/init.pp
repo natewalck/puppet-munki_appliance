@@ -13,10 +13,18 @@ class munki_appliance(
   $admin_email         = 'munki@company.com',
   $admin_username      = 'munkiwebadmin',
   $admin_password      = '123456',
+  $new_repo            = '',
+  $device              = '',
+  $share               = '',
 ) {
 
   unless $::osfamily == 'RedHat' {
     fail("Unsupported osfamily ${::osfamily}")
+  }
+  if $new_repo == "mount" {
+    if $share == '' or $device == '' {
+    fail("You need to specify a mountpoint and a share")
+    }
   }
 
   class{'munki_appliance::groups': } ->
@@ -33,3 +41,4 @@ class munki_appliance(
   Class['munki_appliance']
 
 }
+
